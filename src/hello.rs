@@ -101,6 +101,29 @@ fn display_section() {
         println!("{}", city);
         println!("{:?}", city);
     }
+
+    println!("\n\nnow we comes to the color display");
+    #[derive(Debug)]
+    struct Color {
+        r: u8,
+        g: u8,
+        b: u8,
+    };
+
+    impl fmt::Display for Color {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            return write!(
+                f,
+                "RGB ({r}, {g}, {b}) 0x{r:02X}{g:02X}{b:02X}",
+                r = self.r,
+                g = self.g,
+                b = self.b
+            );
+        }
+    }
+    println!("{}", Color { r: 128, g: 255, b: 90 });
+    println!("{:?}", Color {r: 231, g: 31, b: 0});
+
 }
 
 fn basic_print() {
@@ -148,14 +171,10 @@ fn basic_print() {
         name: &'a str,
         age: u8,
     }
-    let peter = Person {
-        name: "Peter",
-        age: 28,
-    };
+    let peter = Person { name: "Peter", age: 28 };
     println!("{:#?}", peter);
     println!("{:?}", peter);
 }
-
 
 pub fn hello_main() {
     basic_print();
